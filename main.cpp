@@ -1,7 +1,10 @@
 #include<iostream>
+#include "view/ui.hpp"
 using namespace std;
+
+
 int main(){
-    cout<<"Hi Panharo"<<endl;
-    cout<<"Hi panha"<<endl;
+    system("cls");
+    UI::home();
     return 0;
 }
