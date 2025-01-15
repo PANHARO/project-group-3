@@ -2,6 +2,7 @@
 #include"../service/employee_service.hpp"
 #include"table.hpp"
 
+
 using namespace std;
 
 class UI{
@@ -13,15 +14,15 @@ class UI{
             return choice;
         }
         static void option(){
-            cout<<"-------------------------------------------\n";
-            cout<<"   Employee Management System     \n";
-            cout<<"-------------------------------------------\n";
-            cout<<"1. User Login, and Logout\n";
-            cout<<"2. List all employees\n";
-            cout<<"3. Insert, update and delete employee data\n";
-            cout<<"4. Search for employees by name, role,ID\n";
-            cout<<"5. Exit\n";
-            cout<<"-------------------------------------------\n";
+           cout << "-------------------------------------------\n";
+            cout << "Employee Management System \n";
+            cout << "-------------------------------------------\n";
+            cout << "1. User Login, and Logout \n";  // 1️⃣ and 👤
+            cout << "2. List all employees \n";       // 2️⃣ and 📋
+            cout << "3. Insert, update, and delete employee data \n"; // 3️⃣ and ✏️
+            cout << "4. Search for employees by name, role, ID \n";   // 4️⃣ and 🔍
+            cout << "5. Exit \n";                      // 5️⃣ and ❌
+            cout << "-------------------------------------------\n";
         }
     public:
 
@@ -106,3 +107,4 @@ class UI{
         }
         }
     };
+    //Consolas, 'Courier New', monospace

@@ -45,17 +45,24 @@ Employee searchEmployeeInfoByRole(string role){
 }
 
 Employee addEmployee(){
-    Employee newEmployee;
-    cout<<"Insert employee id: ";cin>>newEmployee.ids;
-    cout<<"Insert employee name: ";
-    cin.ignore();
-    getline(cin,newEmployee.names);
-    cout<<"Insert employee role: ";
-    getline(cin,newEmployee.roles);
-    newEmployee.access();
-    employeeRepo.push_back(newEmployee);
-    cout<<"-----Employee has been added successfully! :)------"<<endl;
-    return newEmployee;
+    int id;
+    cout<<"Insert employee id: ";cin>>id;
+    for(Employee emp : employeeRepo){
+        if(emp.ids!=id){
+            Employee newEmployee;
+            cout<<"Insert employee name: ";
+            cin.ignore();
+            getline(cin,newEmployee.names);
+            cout<<"Insert employee role: ";
+            getline(cin,newEmployee.roles);
+            newEmployee.access();
+            employeeRepo.push_back(newEmployee);
+            cout<<"-----Employee has been added successfully! :)------"<<endl;
+            return newEmployee;
+        } else if(emp.ids==id){
+            cout<<"Employee already existed!"<<endl;
+        }     
+    }
 }
 bool deleteEmployeeById(int id){
     for(int i=0; i<employeeRepo.size(); i++){
