@@ -192,6 +192,9 @@ bool deleteEmployeeById() {
             employeeRepositories.erase(employeeRepositories.begin() + x);
             saveEmployeesToFile();
             cout << "Deleted successfully!" << endl;
+            cout<<"Press Any Key To Continue"<<endl;
+            getch();
+            system("cls");
             return true;
         }
     }
