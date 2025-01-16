@@ -14,15 +14,15 @@ class UI{
             return choice;
         }
         static void option(){
-           cout << "-------------------------------------------\n";
+           cout << "_____________________________________________\n";
             cout << "Employee Management System \n";
-            cout << "-------------------------------------------\n";
+            cout << "_____________________________________________\n";
             cout << "1. User Login, and Logout \n";  // 1️⃣ and 👤
             cout << "2. List all employees \n";       // 2️⃣ and 📋
             cout << "3. Insert, update, and delete employee data \n"; // 3️⃣ and ✏️
             cout << "4. Search for employees by name, role, ID \n";   // 4️⃣ and 🔍
             cout << "5. Exit \n";                      // 5️⃣ and ❌
-            cout << "-------------------------------------------\n";
+            cout << "_____________________________________________\n";
         }
     public:
 
@@ -107,4 +107,4 @@ class UI{
         }
         }
     };
-    //Consolas, 'Courier New', monospace
+    

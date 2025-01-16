@@ -9,13 +9,23 @@ private:
     int id;
     string role;
 public:
-    string names;
-    int ids;
-    string roles;
-    void access(){
-        id=ids;
-        name=names;
-        role=roles;
+    string getEmployeeName()const{
+        return name;
+    }
+    void setName(const string& name){
+        this->name=name;
+    }
+    int getEmployeeId()const{
+        return id;
+    }
+    void setId(const int& id){
+        this->id = id;
+    }
+    string getEmployeeRole()const{
+        return role;
+    }
+    void setRole(const int& role){
+        this->role = role;
     }
     void inputEmployeeInfo(){
         cout<<"Employee name: ";cin>>name;
