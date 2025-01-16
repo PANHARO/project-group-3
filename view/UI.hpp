@@ -1,15 +1,15 @@
 #include<iostream>
-#include"../service/iphone_service.hpp"
+#include"../service/employee_service.hpp"
 #include<conio.h>  // For _getch() and kbhit()
 
 using namespace std;
-
+    
 class UI{
     private:
         static void option(int choice){
             system("cls"); // Clear screen for a fresh display
             cout<<"-------------------------------------------\n";
-            cout<<"   Welcome to IPhone Management System     \n";
+            cout<<"|   Welcome to Employee Management System    | \n";
             cout<<"-------------------------------------------\n";
             // Display the options with the selected one highlighted
             string menu[7] = {
@@ -18,9 +18,10 @@ class UI{
                 "[+] Update An Employee", 
                 "[+] Search For Employee", 
                 "[+] View all Employees", 
-                "[+] Exit",
+                "[+] Logout",
                 "Press Enter To Select The Option"
             };
+
             
             for (int i = 0; i < 7; i++) {
                 if (i == choice) {
@@ -132,10 +133,11 @@ class UI{
                     cout<<"[+] View all Employees\n";
                     getAllEmployees();  // Your function to view all Employee
                     cout<<"Press Any Key To Go Back To Menu"<<endl;
+                    _getch();
                     break;
                 case 5:
-                    cout<<"[+] Exiting...\n";
-                    exit(0);
+                    cout<<"[+] Logout Successfully\n";
+                    return loginOrRegister();
                     break;
                 default:
                     cout<<"[-] Invalid choice. Please try again.\n";
@@ -145,25 +147,26 @@ class UI{
         }
     
 
-    public:
-        static void home(){
-            int choice = 0;  // Start at the first option
+        public:
+    static void home() {
+        int choice = 0;  // Start at the first option
 
-            while(true){
-                option(choice); // Show the options with the current choice highlighted
-                
-                char key = _getch(); // Wait for a key press
+        while (true) {
+            option(choice); // Show the options with the current choice highlighted
 
-                if (key == 27) { // Escape key to exit
-                    break;
-                } else if (key == 13) { // Enter key to select the option
-                    handleChoice(choice);  // Handle the selected option
-                    _getch();  // Wait for a key press before continuing (to return to the menu)
-                } else if (key == 72) { // Up arrow key (ASCII code 72)
-                    choice = (choice - 1 + 5) % 5; // Move up in menu, wrapping around
-                } else if (key == 80) { // Down arrow key (ASCII code 80)
-                    choice = (choice + 1) % 5; // Move down in menu, wrapping around
-                }
+            char key = _getch(); // Wait for a key press
+
+            if (key == 27) { // Escape key to exit
+                break;
+            } else if (key == 13) { // Enter key to select the option
+                handleChoice(choice);  // Handle the selected option
+                 // Wait for a key press before continuing (to return to the menu)
+            } else if (key == 72) { // Up arrow key
+                choice = (choice - 1 + 6) % 6; // Move up in menu, wrapping around
+            } else if (key == 80) { // Down arrow key
+                choice = (choice + 1) % 6; // Move down in menu, wrapping around
             }
         }
+    }
 };
+
