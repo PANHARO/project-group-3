@@ -10,6 +10,15 @@
 #include<conio.h>
 using namespace std;
 
+
+
+#define RED "\033[31m"
+#define GREEN "\033[32m"
+#define YELLOW "\033[33m"
+#define BLUE "\033[34m"
+#define CYAN "\033[36m"
+
+
 // Function to combine login and registration in one
 void loginOrRegister() {
     int choice;
@@ -18,11 +27,33 @@ void loginOrRegister() {
     string storedUsername, storedPassword;
     // Check if the file exists, otherwise, prompt to register
     if (loginFile) {
-        cout << "============ Welcome to the System ============" << endl;
-        cout << "1. Login" << endl;
-        cout << "2. Register" << endl;
-        cout << "3. Exit" <<endl;
-        cout << "Please choose an option: ";
+
+
+
+
+
+std:: cout<<YELLOW<<R"(
+                  __          ________ _      _____ ____  __  __ ______ 
+                  \ \        / /  ____| |    / ____/ __ \|  \/  |  ____|
+                   \ \  /\  / /| |__  | |   | |   | |  | | \  / | |__   
+                    \ \/  \/ / |  __| | |   | |   | |  | | |\/| |  __|  
+                     \  /\  /  | |____| |___| |___| |__| | |  | | |____ 
+                      \/  \/   |______|______\_____\____/|_|  |_|______|
+                                                       
+                                                       
+    )"<< endl;
+
+
+        cout<<BLUE<<"\t\t\t________________________________________________"<<endl;
+        cout<<BLUE<<"\t\t\t|============ Welcome to the System ============|" << endl;
+        cout<<BLUE<<"\t\t\t|_______________________________________________|"<<endl;  
+        cout<<BLUE<<"\t\t\t|1. Login                                       |" << endl;
+        cout<<BLUE<<"\t\t\t|_______________________________________________| "<<endl;
+        cout<<BLUE<<"\t\t\t|2. Register                                    |" << endl;
+        cout<<BLUE<<"\t\t\t|_______________________________________________|"<<endl;
+        cout<<BLUE<<"\t\t\t|3. Exit                                        |" <<endl;
+        cout<<BLUE<<"\t\t\t|===============================================|"<<endl;
+        cout <<BLUE<<"\t\t\tPlease choose an option: ";
         cin >> choice;
 
         // If file exists, login
@@ -30,22 +61,22 @@ void loginOrRegister() {
         exit(0);
         }
         if (choice == 1) {
-            cout << "============ Login System ============" << endl;
-            cout << "Username: "; cin >> username;
-            cout << "Password: "; cin >> password;
+            cout<<BLUE<< "\t\t\t============ Login System ============" << endl;
+            cout<<BLUE<< "\t\t\tUsername: "; cin >> username;
+            cout<<BLUE<< "\t\t\tPassword: "; cin >> password;
 
             getline(loginFile, storedUsername);
             getline(loginFile, storedPassword);
             loginFile.close();
 
             if (username == storedUsername && password == storedPassword) {
-                cout << "Login Successful!" << endl;
-                cout<<"Press Any Key To Continue"<<endl;
+                cout<<"\t\t\tLogin Successful!" << endl;
+                cout<<"\t\t\tPress Any Key To Continue"<<endl;
                 _getch();
                 system("cls");
             } else {
-                cout << "Wrong Username or Password\n";
-                cout << "Press any key to try again..." << endl;
+                cout<<BLUE<<"\t\t\tWrong Username or Password\n";
+                cout<<BLUE<<"\t\t\tPress any key to try again..." << endl;
                 _getch();
                 system("cls");
                 return loginOrRegister();  // Retry login
@@ -53,43 +84,43 @@ void loginOrRegister() {
         }
         // Register new user
         else if (choice == 2) {
-            cout << "============ Register System ============" << endl;
-            cout << "Enter Username: "; cin >> username;
-            cout << "Enter Password: "; cin >> password;
+            cout<<YELLOW<<"\t\t\t============ Register System ============" << endl;
+            cout<<"\t\t\tEnter Username: "; cin >> username;
+            cout<<"\t\t\tEnter Password: "; cin >> password;
 
             // Store the username and password to login.txt
             ofstream loginFile("login.txt");
             loginFile << username << endl << password;
             loginFile.close();
 
-            cout << "Registration Successful! You can now login." << endl;
+            cout<<RED<<"\t\t\tRegistration Successful! You can now login." << endl;
         }
         else {
-            cout << "Invalid option! Please try again." << endl;
+            cout<<RED <<"\t\t\tInvalid option! Please try again." << endl;
             _getch();
             return loginOrRegister();  // Retry
         }
     }
     else {
         // No user found, directly go to registration
-        cout << "No user found. Please register first." << endl;
-        cout << "============ Register System ============" << endl;
-        cout << "Enter Username: "; cin >> username;
-        cout << "Enter Password: "; cin >> password;
+        cout<<RED<<"\t\t\tNo user found. Please register first." << endl;
+        cout<<"\t\t\t============ Register System ============" << endl;
+        cout<<"\t\t\tEnter Username: "; cin >> username;
+        cout<<"\t\t\tEnter Password: "; cin >> password;
 
         // Store the username and password to login.txt
         ofstream loginFile("login.txt");
         loginFile << username << endl << password;
         loginFile.close();
 
-        cout << "Registration Successful! You can now login." << endl;
+        cout<<GREEN<<"\t\t\tRegistration Successful! You can now login." << endl;
     }
 }
     
 
 // Function to get all employees
 void getAllEmployees() {
-    cout << "[+] View all Employees\n";
+    cout<<"\t\t\t[+] View all Employees\n";
     vector<vector<string>> employees;
     vector<string> columns = {"ID", "Name", "Role"};
     for (Employee &p : employeeRepositories) {
@@ -112,14 +143,14 @@ bool isRoleTaken(const string& role) {
 // Function to search an employee by ID
 Employee searchById() {
     int id;
-    cout << "Please input the ID you wish to search: "; cin >> id;
+    cout<<"\t\t\tPlease input the ID you wish to search: "; cin >> id;
     for (Employee g : employeeRepositories) {
         if (g.getId() == id) {
             g.output();
             return g;
         }
     }
-    cout << "Invalid ID" << endl;
+    cout<<RED<< "\t\t\tInvalid ID" << endl;
     return {};
 }
 
@@ -131,7 +162,7 @@ Employee searchByNameAndRole(string input) {
             return u;
         }
     }
-    cout << "Invalid Name or Role" << endl;
+    cout<<RED<<"\t\t\tInvalid Name or Role" << endl;
     return {};
 }
 
@@ -139,19 +170,19 @@ Employee searchByNameAndRole(string input) {
 Employee updateEmployee() {
     int id;
     string updateName, updateRole;
-    cout << "Input the employee ID to update: "; cin >> id;
+    cout<<"\t\t\tInput the employee ID to update: "; cin >> id;
     for (Employee &update : employeeRepositories) {
         if (update.getId() == id) {
-            cout << "Change Name from " << update.getName() << " to: "; cin.ignore(); getline(cin, updateName);
+            cout<<"\t\t\tChange Name from " << update.getName() << " to: "; cin.ignore(); getline(cin, updateName);
             update.setName(updateName);
-            cout << "Change from " << update.getRole() << " to: "; getline(cin, updateRole);
+            cout<<"\t\t\tChange from " << update.getRole() << " to: "; getline(cin, updateRole);
             update.setRole(updateRole);
             saveEmployeesToFile();
-            cout << "Updated successfully!" << endl;
+            cout<<"\t\t\tUpdated successfully!" << endl;
             return update;
         }
     }
-    cout << "Invalid ID" << endl;
+    cout<<GREEN<< "\t\t\tInvalid ID" << endl;
     return {};
 }
 
@@ -159,22 +190,22 @@ Employee updateEmployee() {
 void addEmployee() {
     int id;
     string name, role;
-    cout << "Please input employee info" << endl;
+    cout<< "\t\t\tPlease input employee info" << endl;
 
-    cout << "ID: "; cin >> id;
+    cout <<"\t\t\tID: "; cin >> id;
     for (Employee i : employeeRepositories) {
         if (i.getId() == id) {
-            cout << "ID already available. Please input a new ID." << endl;
+            cout<<BLUE<<"\t\t\tID already available. Please input a new ID." << endl;
             return addEmployee();
         }
     }
     cin.ignore();
-    cout << "Name: "; getline(cin, name);
-    cout << "Role: "; getline(cin, role);
+    cout <<"\t\t\tName: "; getline(cin, name);
+    cout <<"\t\t\tRole: "; getline(cin, role);
 
     // Check if the role is already taken
     if (isRoleTaken(role)) {
-        cout << "Role is already taken. Please choose a different role." << endl;
+        cout<<GREEN<<"\t\t\tRole is already taken. Please choose a different role." << endl;
         return addEmployee();
     }
 
@@ -186,19 +217,16 @@ void addEmployee() {
 // Function to delete an employee by ID
 bool deleteEmployeeById() {
     int id;
-    cout << "Please input the ID you want to delete: "; cin >> id;
+    cout<<YELLOW<<"\t\t\tPlease input the ID you want to delete: "; cin >> id;
     for (int x = 0; x < employeeRepositories.size(); x++) {
         if (employeeRepositories[x].getId() == id) {
             employeeRepositories.erase(employeeRepositories.begin() + x);
             saveEmployeesToFile();
-            cout << "Deleted successfully!" << endl;
-            cout<<"Press Any Key To Continue"<<endl;
-            getch();
-            system("cls");
+            cout<<YELLOW<<"\t\t\tDeleted successfully!" << endl;
             return true;
         }
     }
-    cout << "Invalid ID" << endl;
+    cout<<YELLOW<< "\t\t\tInvalid ID" << endl;
     return false;
 }
 
